@@ -18,11 +18,11 @@ services:
     command: --api.insecure=true --providers.docker
     ports:
       - 80:80
-      - 8080:8080
+      - 8084:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   app-authors:
-    image: app-authors:1.0
+    image: pjcaiza/app-authors:1.0
     environment:
       QUARKUS_DATASOURCE_USERNAME: postgres
       QUARKUS_DATASOURCE_JDBC_PASSWORD: postgres
@@ -42,7 +42,7 @@ services:
       - "traefik.http.middlewares.author-stripprefix.stripprefix.prefixes=/author-service"
       - "traefik.http.routers.author.middlewares=author-stripprefix"
   app-books:
-    image: app-books:1.0
+    image: pjcaiza/app-books:1.0
     ports:
       - 7070
     deploy:
@@ -59,9 +59,9 @@ services:
       - "traefik.http.middlewares.book-stripprefix.stripprefix.prefixes=/book-service"
       - "traefik.http.routers.book.middlewares=book-stripprefix"
   app-web:
-    image: app-web:1.0
+    image: pjcaiza/app-web:1.0 
     ports:
-      - 8084:8084
+      - 8080:8080
     depends_on:
       - traefik
 

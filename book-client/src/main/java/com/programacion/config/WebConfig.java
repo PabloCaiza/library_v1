@@ -18,7 +18,7 @@ public class WebConfig {
 
         this.authorController=authorController;
         this.bookController=bookController;
-        port(8084);
+        port(8080);
         staticFileLocation("/public");
         setupRoutes();
         setupFilters();
