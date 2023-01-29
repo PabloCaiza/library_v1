@@ -1,0 +1,18 @@
+db:
+  source: jdbc
+  connection:
+    url: "jdbc:postgresql://localhost:5432/books"
+    username: postgres
+    password: postgres
+    poolName: hikariPool
+  statements:
+    select-all-books: "SELECT * FROM books"
+    select-book: "SELECT * FROM books WHERE id=:id"
+    create-book: "INSERT INTO books(isbn,title,author_id,price) VALUES(:isbn,:title,:author,:price)"
+    delete-book: "DELETE FROM books WHERE id=:id"
+    update-book: "UPDATE books SET isbn=:isbn,title=:title,author_id=:author,price=:price WHERE id=:id"
+    select-books-author: "SELECT * FROM books WHERE author_id=:authorId"
+server:
+  port: 7070
+
+

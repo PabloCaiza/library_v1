@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<br/>
+<h5 class="card-title" th:text="Author"/>
+<h6 class="card-subtitle mb-2 text-muted" th:text="${author.first_name}"/>
+<br/>
+<a class="btn btn-primary" href="/">Back</a>
+<a class="btn btn-success" href="/addBook">Add Book</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Author</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+
+    </thead>
+    <tbody>
+
+    <tr th:each="b:${books}">
+        <td th:text="${b.id}"></td>
+        <td th:text="${b.author}"></td>
+        <td th:text="${b.isbn}"></td>
+        <td th:text="${b.title}"></td>
+        <td th:text="${b.price}"></td>
+        <td >
+            <a type="button" class="btn btn-primary" th:href="'/updateBook/'+${b.id}" >Edit</a>
+        </td>
+        <td >
+            <a type="button" class="btn btn-danger" th:href="'/'+${author.id}+'/deleteBook/'+${b.id}" >Delete</a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
